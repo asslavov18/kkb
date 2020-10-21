@@ -1,32 +1,33 @@
 #include <iostream> 
 #include <vector>
+#include <string>
 using namespace std;
+int toNumber(string a) {
+	int c=1;
+	int sum = 0;
+	for (int i = a.size()-1; i >= 0; i--)
+	{
+		sum += (a[i] - 48) * c;
+		c *= 10;
+	}
+	return sum;
+
+}
+
 bool Menu()
 {
 	vector<vector<int>> a;
-	vector<int> c;
-	int n;
-	int num;
+	int n,b;
 	cout << "Enter the number of arrays";
 	cin >> n;
-	for (int i = 0; i < n; i++)
-	{
-		while (cin.get() != '\n')
-		{
-			cin >> num;
-			c.push_back(num);
-		}
-		a.push_back(c);
-		c.erase(c.begin(),c.end());
+	string m,c;
+	for (int i = 0; i <= n; i++) {
+		getline(cin, m);
+		b = m.find(" ");
+		c = m.substr(0, b);
+		cout << toNumber(c) << endl;
 	}
-	for (int i = 0;i < a.size(); i++)
-	{
-		for (int j = 0; j < a[i].size(); j++)
-		{
-			cout << a[i][j] << " ";
-		}
-		cout << endl;
-	}
+
 	/*
 	1.obedinenie
 	2.sechenie
