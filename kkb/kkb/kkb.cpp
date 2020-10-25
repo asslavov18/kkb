@@ -38,7 +38,13 @@ bool Menu()
 	{
 		cout << lines[i] << endl;
 	}
-	divideStrings(lines[0]);
+	/*
+	1.obedinenie
+	2.sechenie
+	3.razlika
+	4.simetrichna razlika
+	5.Podmnojestvo
+	*/
 	return true;
 }
 
