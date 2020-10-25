@@ -1,7 +1,7 @@
 #include <iostream> 
 #include <vector>
 #include <string>
-
+//startup
 using namespace std;
 int stringToNumber(string numTxt) {
 	// will do later
