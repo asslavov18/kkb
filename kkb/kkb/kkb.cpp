@@ -4,7 +4,12 @@
 #include <fstream>
 //startup
 using namespace std;
+/*
+vector<int> template(vector<vector<int>>){
+	
 
+}
+*/
 int stringToNumber(string numTxt) {
 	int base = 1;
 	int num = 0;
@@ -30,8 +35,8 @@ vector<int> divideStrings(string line) {
 
 
 bool Menu(fstream& inputs)
-{
-	vector<string> lines;
+{ 
+	vector<vector<int>> sets;
 	string line;
 	int arrays;
 	cout << "Enter the numbers of arrays or -1 if u want to quit. " << endl;
@@ -46,8 +51,7 @@ bool Menu(fstream& inputs)
 		getline(cin, line);
 		inputs << line;
 		inputs << "\n";
-		lines.push_back(line);
-		divideStrings(lines[i]);
+		sets.push_back(divideStrings(line));
 	}
 	
 	/*
