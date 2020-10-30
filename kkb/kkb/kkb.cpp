@@ -1,43 +1,55 @@
 #include <iostream> 
 #include <vector>
 #include <string>
+#include <fstream>
 //startup
 using namespace std;
+
 int stringToNumber(string numTxt) {
-	// will do later
-	return 0;
+	int base = 1;
+	int num = 0;
+	for (int i = numTxt.size()-1; i >= 0; i--)
+	{
+		num += (numTxt[i] - 48) * base;
+		base *= 10;
+	}
+	return num;
 }
 
-void divideStrings(string line) {
+vector<int> divideStrings(string line) {
 	vector<int> numsArr;
 	while (line.find(" ") != string::npos)
-	{
-		cout << line.substr(0, line.find(" ")) << endl;
-		stringToNumber(line.substr(0, line.find(" ")));
+	{		
+		numsArr.push_back(stringToNumber(line.substr(0, line.find(" "))));
 		line = line.substr(line.find(" ") + 1, line.size() - line.find(" ") + 1);
 	}
-	cout << line;
-	stringToNumber(line);
+	numsArr.push_back(stringToNumber(line));
+	return numsArr;
 }
 
 
 
-bool Menu()
+bool Menu(fstream& inputs)
 {
 	vector<string> lines;
 	string line;
 	int arrays;
+	cout << "Enter the numbers of arrays or -1 if u want to quit. " << endl;
 	cin >> arrays;
+	if (arrays == -1)
+	{
+		return false;
+	}
 	cin.ignore();
 	for (int i = 0; i < arrays; i++)
 	{
 		getline(cin, line);
+		inputs << line;
+		inputs << "\n";
 		lines.push_back(line);
+		divideStrings(lines[i]);
 	}
-	for (int i = 0; i < arrays; i++)
-	{
-		cout << lines[i] << endl;
-	}
+	
 	/*
 	1.obedinenie
 	2.sechenie
@@ -50,5 +62,12 @@ bool Menu()
 
 int main()
 {
-	while (Menu());
+	fstream inputs;
+	string line;
+	inputs.open("Inputs.txt");
+	if (inputs.is_open())
+	{
+		while (Menu(inputs));
+	}
+	inputs.close();
 }
