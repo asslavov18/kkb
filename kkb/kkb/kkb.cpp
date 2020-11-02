@@ -94,24 +94,46 @@ vector<int> Intersection(vector<vector<int>> sets)
 	}
 	return inter;
 }
-
-vector<int> Substraction(vector<int> set1, vector<int> set2)
+vector<int> Substraction(vector<vector<int>> sets)
 {
-	bool found;
 	vector<int> sub;
-	size_t i, j;
-	for (i = 0; i < set1.size(); i++)
+	size_t i, j, n, tek;
+	bool found, foundInNoSet;
+
+	for (n = 0; n < sets[0].size(); n++)
 	{
-		found = 0;
-		for (j = 0; j < set2.size(); j++)
+		tek = sets[0][n];
+		foundInNoSet = 1;
+		for (i = 1; i < sets.size(); i++)
 		{
-			if (set2[j] == set1[i])
+			found = 0;
+			for (j = 0; j < sets[i].size(); j++)
 			{
-				found = 1;
+				if (sets[i][j] == tek)
+				{
+					found = 1;
+					break;
+				}
+			}
+			if (found == 1)
+			{
+				foundInNoSet = 0;
 				break;
 			}
 		}
-		if (found == 0) sub.push_back(set1[i]);
+		if (foundInNoSet)
+		{
+			found = 0;
+			for (i = 0; i < sub.size(); i++)
+			{
+				if (sub[i] == tek)
+				{
+					found = 1;
+					break;
+				}
+			}
+			if (found == 0) sub.push_back(tek);
+		}
 	}
 	return sub;
 }
@@ -121,7 +143,7 @@ bool Menu(fstream& inputs)
 	vector<vector<int>> sets;
 	string line;
 	int arrays;
-	cout << "Enter the numbers of arrays or -1 if u want to quit. " << endl;
+	cout << "Enter the number of arrays or -1 if you want to quit. " << endl;
 	cin >> arrays;
 	if (arrays == -1)
 	{
@@ -156,4 +178,5 @@ int main()
 		while (Menu(inputs));
 	}
 	inputs.close();
+	
 }
