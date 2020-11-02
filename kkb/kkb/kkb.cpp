@@ -4,12 +4,7 @@
 #include <fstream>
 //startup
 using namespace std;
-/*
-vector<int> template(vector<vector<int>>){
-	
 
-}
-*/
 int stringToNumber(string numTxt) {
 	int base = 1;
 	int num = 0;
@@ -31,8 +26,6 @@ vector<int> divideStrings(string line) {
 	numsArr.push_back(stringToNumber(line));
 	return numsArr;
 }
-
-
 
 bool Menu(fstream& inputs)
 { 
