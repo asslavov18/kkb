@@ -30,7 +30,7 @@ vector<int> divideStrings(string line) {
 vector<int> Union(vector<vector<int>> sets)
 {
 	vector<int> uni;
-	int i, j, n;
+	size_t i, j, n;
 	bool found;
 	for (i = 0; i < sets.size(); i++)
 	{
@@ -49,6 +49,50 @@ vector<int> Union(vector<vector<int>> sets)
 		}
 	}
 	return uni;
+}
+vector<int> Intersection(vector<vector<int>> sets)
+{
+	vector<int> inter;
+	size_t i, j, n, tek;
+	bool found, foundInAll;
+
+	for (n = 0; n < sets[0].size(); n++)
+	{
+		tek = sets[0][n];
+		foundInAll = 1;
+		for (i = 1; i < sets.size(); i++)
+		{
+			found = 0;
+			for (j = 0; j < sets[i].size(); j++)
+			{
+				if (sets[i][j] == tek)
+				{
+					found = 1;
+					break;
+				}
+			}
+			if (found == 0)
+			{
+				foundInAll = 0;
+				break;
+			}
+		}
+		if (foundInAll)
+		{
+			found = 0;
+			for (i = 0; i < inter.size(); i++)
+			{
+				if (inter[i] == tek)
+				{
+					found = 1;
+					break;
+				}
+			}
+			if (found == 0) inter.push_back(tek);
+		}
+
+	}
+	return inter;
 }
 
 bool Menu(fstream& inputs)
