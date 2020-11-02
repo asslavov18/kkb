@@ -35,7 +35,8 @@ vector<int> divideStrings(string line) {
 vector<int> Union(vector<vector<int>> sets)
 {
 	vector<int> uni;
-	int i, j, n;
+	vector<int> sub;
+	size_t i, j, n;
 	bool found;
 	for (i = 0; i < sets.size(); i++)
 	{
@@ -54,6 +55,27 @@ vector<int> Union(vector<vector<int>> sets)
 		}
 	}
 	return uni;
+}
+
+vector<int> Substraction(vector<int> set1, vector<int> set2)
+{
+	bool found;
+	vector<int> sub;
+	size_t i, j;
+	for (i = 0; i < set1.size(); i++)
+	{
+		found = 0;
+		for (j = 0; j < set2.size(); j++)
+		{
+			if (set2[j] == set1[i])
+			{
+				found = 1;
+				break;
+			}
+		}
+		if (found == 0) sub.push_back(set1[i]);
+	}
+	return sub;
 }
 
 bool Menu(fstream& inputs)
