@@ -10,7 +10,7 @@ int stringToNumber(string numTxt) {
 	int num = 0;
 	for (int i = numTxt.size()-1; i >= 0; i--)
 	{
-		num += (numTxt[i] - 48) * base;
+		num += (numTxt[i] - '0') * base;
 		base *= 10;
 	}
 	return num;
@@ -25,6 +25,30 @@ vector<int> divideStrings(string line) {
 	}
 	numsArr.push_back(stringToNumber(line));
 	return numsArr;
+}
+
+vector<int> Union(vector<vector<int>> sets)
+{
+	vector<int> uni;
+	int i, j, n;
+	bool found;
+	for (i = 0; i < sets.size(); i++)
+	{
+		for (j = 0; j < sets[i].size(); j++)
+		{
+			found = 0;
+			for (n = 0; n < uni.size(); n++)
+			{
+				if (uni[n] == sets[i][j])
+				{
+					found = 1;
+					break;
+				}
+			}
+			if (found == 0) uni.push_back(sets[i][j]);
+		}
+	}
+	return uni;
 }
 
 bool Menu(fstream& inputs)
